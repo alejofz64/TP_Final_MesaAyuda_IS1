@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!-- listarTicket.html                                                                                                     -->                                                                                                      
+<!-- Taller de maquetado - aplicación ejemplo Mesa de Ayuda                                                                -->                                                                                                      
+<!-- Dr. Pedro E. Colla                                                                                                    -->                                                                                                      
+<!-- UADER - Ingeniería de Software I                                                                                      -->                                                                                                      
+<!--------------------------------------------------------------------------------------------------------------------------->
+
+<html Lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Mis Tickets - Mesa de Ayuda</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f5f5f5;
+            }
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+                background-color: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .user-info {
+                background-color: #d8f7cf;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                border: 1px solid #b8e0a8;
+            }
+            .user-info h3 {
+                margin-top: 0;
+                color: #2d5016;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .info-item {
+                margin-bottom: 5px;
+            }
+            .info-label {
+                font-weight: bold;
+                color: #495057;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: left;
+            }
+            th {
+                background-color: #f8f9fa;
+                color: rgb(0, 0, 0);
+            }
+            tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .no-tickets {
+                text-align: center;
+                color: #6c757d;
+                padding: 40px;
+                font-style: italic;
+            }
+            .ticket-status {
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .status-abierto { background-color: #ffffff; color: #000000; }
+            .status-en-proceso { background-color: #ffffff; color: #000000; }
+            .status-cerrado { background-color: #ffffff; color: #000000; }
+            
+            /* Breadcrumb styles */
+            ul.breadcrumb {
+                padding: 10px 16px;
+                list-style: none;
+                background-color: #eee;
+                margin-bottom: 20px;
+            }
+            ul.breadcrumb li {
+                display: inline;
+                font-size: 18px;
+            }
+            ul.breadcrumb li+li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+            ul.breadcrumb li a {
+                color: #0275d8;
+                text-decoration: none;
+            }
+            ul.breadcrumb li a:hover {
+                color: #01447e;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Breadcrumb navigation --> 
+        <ul class="breadcrumb">
+            <li><a href="loginClient.html">Login</a></li> <!--muestra donde estoy "login > listar tickets"-->
+            <li>Listar tickets</li>
+        </ul>
+
+        <center><img src="HelpDeskGirl.png" alt="Nuestra imagen corporativa" style="width:200px;height:150px;"></center>
+        <center><h1>Sistema de Mesa de Ayuda</h1></center>
+
+        <div class="container">
+            <div class="header">
+                <h2> Tickets activos para usuario</h2>
+            </div>
+
+            <!-- Información del usuario -->
+            <div class="user-info">
+                <h3>👤 Información del Usuario</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">ID del Cliente:</span>
+                        <span id="userID">-</span> <!--Los campos estan vacios (-) hasta q js los llene -->
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Contacto:</span>
+                        <span id="userContacto">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nombre:</span>
+                        <span id="userNombre">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Último ingreso:</span>
+                        <span id="userUltimoIngreso">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de tickets -->
+            <h2> Tickets Registrados</h2>
+            <div id="ticketsList">
+                <table id="ticketsTable">
+                    <thead>
+                        <tr> <!--columnas-->
+                            <th>ID Ticket</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Fecha Apertura</th>
+                            <th>Último Contacto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticketsBody">
+                        <!-- Los tickets se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+                <div id="noTicketsMessage" class="no-tickets" style="display: none;">
+                    No tienes tickets registrados.
+                </div>
+            </div>
+        </div>
+
+        <script src="listarTicket.js"></script>
+    </body>
+</html>
